@@ -1,4 +1,5 @@
 import pytest
+from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -10,6 +11,7 @@ def browser(language):
     print("\nStart browser for test..")
     browser = webdriver.Chrome(options=options)
     yield browser
+    sleep(3)
     print("\nQuit browser..")
     browser.quit()
 
