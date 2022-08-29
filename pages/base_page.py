@@ -1,4 +1,6 @@
 import selenium
+from selenium import webdriver
+import selenium
 
 
 class BasePage:
