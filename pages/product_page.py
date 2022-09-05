@@ -17,8 +17,8 @@ class ProductPage(BasePage):
     def CompareProductName(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), "Cant find  product name on page"
         productName = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        assert self.is_element_present(*ProductPageLocators.SUCCES_MASSAGE), "Success massage isnt present"
-        succesMassage = self.browser.find_element(*ProductPageLocators.SUCCES_MASSAGE).text
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MASSAGE), "Success massage isnt present"
+        succesMassage = self.browser.find_element(*ProductPageLocators.SUCCESS_MASSAGE).text
         assert productName in succesMassage, "Product name isnt contains in success massage"
         print(f"{productName} == {succesMassage}")
 
@@ -28,3 +28,9 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.BASKET_TOTAL), "Basket block isnt displayed"
         basketTotal = self.browser.find_element(*ProductPageLocators.BASKET_TOTAL).text
         assert productPrice in basketTotal, "Price of product isnt equal basket total"
+
+    def should_not_be_success_message_present(self):
+        assert self.is_not_present(*ProductPageLocators.SUCCESS_MASSAGE), "Success message isn't presented "
+
+    def should_not_be_success_message_dis(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MASSAGE), "Success message is not disappear after 4 sec"
