@@ -69,7 +69,7 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basketPage.is_empty_message_disp()
 
 
-@pytest.mark.new
+@pytest.mark.need_review
 class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -81,15 +81,6 @@ class TestUserAddToBasketFromProductPage:
         log_page.register_new_user(email, password)
         log_page.should_be_authorized_user()
 
-    def test_user_cant_see_success_message(self, browser):
-        product_base_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-        product_page = ProductPage(browser, product_base_link)
-        product_page.openPage()
-        product_page.should_not_be_success_message_present()
-
-
-@pytest.mark.need_review
-class TestNeededReviewTests:
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
         product_p = ProductPage(browser, link)
@@ -98,6 +89,10 @@ class TestNeededReviewTests:
         product_p.BuyProductStep()
         product_p.CompareProductName()
         product_p.ComparePriceOfProductAndTotal()
+
+
+@pytest.mark.need_review
+class TestNeededReviewTests:
 
     def test_guest_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
