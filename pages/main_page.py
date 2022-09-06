@@ -1,7 +1,4 @@
 from pages.base_page import BasePage
-from pages.login_page import LoginPage
-from locators import MainPageLocators
-from selenium.webdriver.common.by import By
 
 
 class MainPage(BasePage):

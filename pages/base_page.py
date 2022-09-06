@@ -1,6 +1,3 @@
-import selenium
-from selenium import webdriver
-import selenium
 from time import sleep
 import math
 
@@ -16,6 +13,22 @@ class BasePage:
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+    def solve_quiz_and_get_code(self):
+        alert = self.browser.switch_to.alert
+        x = alert.text.split(" ")[2]
+        answer = str(math.log(abs((12 * math.sin(float(x))))))
+        alert.send_keys(answer)
+        sleep(2)
+        alert.accept()
+        try:
+            alert = self.browser.switch_to.alert
+            alert_text = alert.text
+            print(f"Your code: {alert_text}")
+            sleep(2)
+            alert.accept()
+        except NoAlertPresentException:
+            print("No second alert presented")
 
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -40,22 +53,6 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
-
-    def solve_quiz_and_get_code(self):
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
-        alert.send_keys(answer)
-        sleep(2)
-        alert.accept()
-        try:
-            alert = self.browser.switch_to.alert
-            alert_text = alert.text
-            print(f"Your code: {alert_text}")
-            sleep(2)
-            alert.accept()
-        except NoAlertPresentException:
-            print("No second alert presented")
 
     def is_not_present(self, how, what, timeout=4):
         try:

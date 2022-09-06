@@ -8,10 +8,6 @@ class BasePageLocators:
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
-class MainPageLocators:
-    L = (By.CSS_SELECTOR, "awdawdawd")
-
-
 class BasketPageLocators:
     PAGE_HEADER = (By.CSS_SELECTOR, "div[class='page-header action'] >h1")
     BASKET_PAGE_MESSAGE = (By.CSS_SELECTOR, "#content_inner>p")
